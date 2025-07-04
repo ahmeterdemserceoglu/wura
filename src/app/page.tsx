@@ -4,13 +4,12 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Progress } from "@/components/ui/progress";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Slider } from "@/components/ui/slider";
+import NexusImperium from "@/game/NexusImperium";
 import {
   Rocket,
   Settings,
@@ -51,7 +50,12 @@ import {
   Sparkles,
   Swords,
   Timer,
-  Map
+  Map,
+  Play,
+  Info,
+  Gamepad2,
+  Brain,
+  Award
 } from "lucide-react";
 
 // Oyun verileri türleri
@@ -100,14 +104,14 @@ interface Battle {
   intensity: number;
 }
 
-export default function GalacticEmpire() {
-  const [selectedPlanet, setSelectedPlanet] = useState("Ana Dünya");
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const [stars, setStars] = useState<Array<{id: string, left: string, top: string, animationDelay: string, animationDuration: string}>>([]);
+export default function HomePage() {
+  const [showDemo, setShowDemo] = useState(false);
   const [currentTime, setCurrentTime] = useState(new Date());
   const [isConnected, setIsConnected] = useState(true);
   const [soundEnabled, setSoundEnabled] = useState(true);
-  const [activeTab, setActiveTab] = useState("genel-bakis");
+  const [activeTab, setActiveTab] = useState("overview");
+  const [showNexusImperium, setShowNexusImperium] = useState(false);
+  const [stars, setStars] = useState<Array<{id: string, left: string, top: string, animationDelay: string, animationDuration: string}>>([]);
 
   // Real-time saat güncelleme
   useEffect(() => {
@@ -117,8 +121,8 @@ export default function GalacticEmpire() {
 
   useEffect(() => {
     // Yıldız alanı oluştur
-    const generatedStars = Array.from({ length: 100 }, (_, i) => ({
-      id: `yildiz-${i}-${Date.now()}`,
+    const generatedStars = Array.from({ length: 150 }, (_, i) => ({
+      id: `star-${i}`,
       left: `${Math.random() * 100}%`,
       top: `${Math.random() * 100}%`,
       animationDelay: `${Math.random() * 5}s`,
@@ -319,17 +323,21 @@ export default function GalacticEmpire() {
     return `${hours}s ${minutes}dk ${secs}s`;
   };
 
-  return (
-    <TooltipProvider>
+  if (showNexusImperium) {
+    return <NexusImperium />;
+  }
+
+      return (
       <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-purple-900 relative overflow-hidden">
-        {/* Advanced Starfield */}
+        {/* Animated starfield */}
         <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-transparent via-blue-900/10 to-slate-900/50" />
-          {/* Nebula Effect */}
+          
+          {/* Nebula effects */}
           <div className="absolute top-1/4 left-1/3 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse" />
           <div className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-blue-500/10 rounded-full blur-3xl animate-pulse" />
-
-          {/* Stars */}
+          
+          {/* Animated stars */}
           {stars.map((star) => (
             <div
               key={star.id}
@@ -341,7 +349,7 @@ export default function GalacticEmpire() {
                 animationDuration: star.animationDuration
               }}
             >
-              <Star className="w-1 h-1 text-white/40 fill-current" />
+              <Star className="w-1 h-1 text-white/30 fill-current" />
             </div>
           ))}
         </div>
@@ -368,7 +376,7 @@ export default function GalacticEmpire() {
                   </div>
                   <div>
                     <h1 className="text-2xl font-bold bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
-                      GALAKTİK İMPARATORLUK
+                      NEXUS IMPERIUM
                     </h1>
                     <div className="flex items-center gap-3 text-xs">
                       <span className="text-cyan-400">v2.1.47</span>
@@ -967,7 +975,7 @@ export default function GalacticEmpire() {
             onClick={() => setIsSidebarOpen(false)}
           />
         )}
+              </div>
       </div>
-    </TooltipProvider>
-  );
-}
+    );
+  }
