@@ -146,6 +146,41 @@ dependencies {
     // Work Manager
     implementation "androidx.work:work-runtime-ktx:2.8.1"
     
+    // P2P and Decentralized Network
+    implementation 'org.bouncycastle:bcprov-jdk18on:1.76'
+    implementation 'org.bouncycastle:bcpkix-jdk18on:1.76'
+    implementation 'com.github.ipfs:java-ipfs-http-client:v1.4.4'
+    implementation 'org.web3j:core:4.10.3'
+    implementation 'org.bitcoinj:bitcoinj-core:0.16.2'
+    
+    // Advanced Networking
+    implementation 'io.netty:netty-all:4.1.100.Final'
+    implementation 'org.java-websocket:Java-WebSocket:1.5.3'
+    implementation 'com.google.protobuf:protobuf-java:3.24.4'
+    
+    // Advanced Security
+    implementation 'org.signal:libsignal-android:0.39.4'
+    implementation 'com.google.crypto.tink:tink-android:1.10.0'
+    
+    // Database for Decentralized Storage
+    implementation 'com.github.OrbitDB:orbit-db-android:0.1.0'
+    implementation 'com.raizlabs.android:DBFlow-Core:5.0.0-beta1'
+    implementation 'com.raizlabs.android:DBFlow:5.0.0-beta1'
+    kapt 'com.raizlabs.android:DBFlow-Processor:5.0.0-beta1'
+    
+    // Advanced UI Components
+    implementation 'com.github.skydoves:powermenu:2.2.3'
+    implementation 'com.github.skydoves:balloon:1.5.4'
+    implementation 'com.github.chrisbanes:PhotoView:2.3.0'
+    implementation 'com.github.smarteist:autoimageslider:1.4.0'
+    implementation 'com.github.bumptech.glide:glide:4.16.0'
+    implementation 'jp.wasabeef:glide-transformations:4.3.0'
+    
+    // Animation Libraries
+    implementation 'com.daimajia.androidanimations:library:2.4@aar'
+    implementation 'com.github.ybq:Android-SpinKit:1.4.0'
+    implementation 'com.facebook.shimmer:shimmer:0.5.0'
+    
     // Testing
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
